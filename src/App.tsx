@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
 import "./App.css";
-import { Card } from "./types";
+import { CardType } from "./types";
 import { shuffle } from "./helpers/helper";
+import Card from "./components/Card/Card";
 
 function App() {
-  const [cards, setCards] = useState<Card[]>([]);
+  const [cards, setCards] = useState<CardType[]>([]);
 
   const initGame = () => {
     const c = shuffle();
@@ -15,11 +16,11 @@ function App() {
 
   return (
     <div className="App">
-      {cards.map((card, i) => (
-        <div>
-          <img src={card.src} />
-        </div>
-      ))}
+      <div className="grid">
+        {cards.map((card, i) => (
+          <Card key={i} card={card} />
+        ))}
+      </div>
     </div>
   );
 }
