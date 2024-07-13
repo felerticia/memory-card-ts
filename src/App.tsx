@@ -9,6 +9,7 @@ function App() {
   const [firstCard, setFirstCard] = useState<number | undefined>();
   const [secondCard, setSecondCard] = useState<number | undefined>();
   const [disabled, setDisabled] = useState(false);
+  const [turn, setTurn] = useState(0);
 
   const updateRevealedCards = (index: number) => {
     if (disabled) return;
@@ -17,6 +18,7 @@ function App() {
     } else {
       setFirstCard(index);
     }
+    setTurn(turn + 1);
   };
 
   const reset = () => {
@@ -43,7 +45,10 @@ function App() {
 
   const initGame = () => {
     const c = shuffle();
-    setCards(c);
+    setFirstCard(undefined);
+    setTurn(0);
+
+    setTimeout(() => setCards(c), 300);
   };
 
   useEffect(initGame, []);
@@ -59,6 +64,10 @@ function App() {
             isRevealed={card.revealed || firstCard === i || secondCard === i}
           />
         ))}
+      </div>
+      <div className="controls">
+        <button onClick={initGame}>New Game</button>
+        <p>Turn: {turn}</p>
       </div>
     </div>
   );

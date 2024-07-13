@@ -17,3 +17,29 @@ body {
   grid-template-rows: repeat(4, 1fr);
   gap: 15px;
 }
+
+.controls {
+  margin: 5px 5px 0 0;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+}
+button {
+  border: 3px solid #35b08b;
+  color: #35b08b;
+  padding: 10px 20px;
+  border-radius: 10px;
+  background: none;
+  font-family: inherit;
+  font-size: 24px;
+  transition: color 0.3s, background-color 0.3s;
+  cursor: pointer;
+}
+button:hover {
+  background-color: #35b08b;
+  color: #003d2b;
+}
+p {
+  font-size: 24px;
+  color: #35b08b;
+}

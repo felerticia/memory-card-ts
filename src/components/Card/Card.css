@@ -1,6 +1,6 @@
 .card {
-  width: 150px;
-  height: 210px;
+  width: 130px;
+  height: 180px;
   transition: transform 0.3s;
   transform-style: preserve-3d;
   cursor: pointer;
