@@ -4,11 +4,12 @@ import "./Card.css";
 type CardProps = {
   card: CardType;
   onClick: () => void;
+  isRevealed: boolean;
 };
 
-const Card = ({ card, onClick }: CardProps) => {
+const Card = ({ card, onClick, isRevealed }: CardProps) => {
   return (
-    <div className="card">
+    <div className={`card ${isRevealed ? "is-revealed" : ""}`}>
       <div className="card__face card__face--front">
         <img src={card.src} alt="card-front" />
       </div>

@@ -8,8 +8,10 @@ function App() {
   const [cards, setCards] = useState<CardType[]>([]);
   const [firstCard, setFirstCard] = useState<number | undefined>();
   const [secondCard, setSecondCard] = useState<number | undefined>();
+  const [disabled, setDisabled] = useState(false);
 
   const updateRevealedCards = (index: number) => {
+    if (disabled) return;
     if (firstCard !== undefined) {
       setSecondCard(index);
     } else {
@@ -20,10 +22,12 @@ function App() {
   const reset = () => {
     setFirstCard(undefined);
     setSecondCard(undefined);
+    setDisabled(false);
   };
 
   useEffect(() => {
     if (firstCard !== undefined && secondCard !== undefined) {
+      setDisabled(true);
       if (cards[firstCard].src === cards[secondCard].src) {
         const updatedCards = cards.map((card, i) => ({
           ...card,
@@ -31,6 +35,8 @@ function App() {
         }));
         setCards(updatedCards);
         reset();
+      } else {
+        setTimeout(reset, 1000);
       }
     }
   }, [firstCard, secondCard, cards]);
@@ -46,7 +52,12 @@ function App() {
     <div className="App">
       <div className="grid">
         {cards.map((card, i) => (
-          <Card key={i} card={card} onClick={() => updateRevealedCards(i)} />
+          <Card
+            key={i}
+            card={card}
+            onClick={() => updateRevealedCards(i)}
+            isRevealed={card.revealed || firstCard === i || secondCard === i}
+          />
         ))}
       </div>
     </div>
