@@ -1,6 +1,6 @@
-import { Card } from "../types";
+import { CardType } from "../types";
 
-export const shuffle = (): Card[] => {
+export const shuffle = (): CardType[] => {
   return new Array(16)
     .fill(0)
     .map((_, i) => ({
